@@ -19,7 +19,8 @@ const UserPage = () => {
       }
 
       try {
-        const response = await fetch(`https://certificate122rtt.azurewebsites.net/v1/user?user_id=${userId}`);
+        
+        const response = await fetch(`https://raviteja679.azurewebsites.net/v1/user?user_id=${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }
