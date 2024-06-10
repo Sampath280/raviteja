@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 
 const UserPage = () => {
@@ -53,4 +53,10 @@ const UserPage = () => {
   );
 };
 
-export default UserPage;
+const SuspendedUserPage = () => (
+  <Suspense fallback={<p>Loading...</p>}>
+    <UserPage />
+  </Suspense>
+);
+
+export default SuspendedUserPage;
