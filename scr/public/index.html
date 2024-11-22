@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Web App with Azure SQL</title>
+</head>
+<body>
+    <h1>Static Web Apps Database Connections</h1>
+    <blockquote>Open the console in the browser developer tools to see the API responses.</blockquote>
+    <div>
+        <button id="list" onclick="list()">List</button>
+        <button id="get" onclick="get()">Get</button>
+        <button id="update" onclick="update()">Update</button>
+        <button id="create" onclick="create()">Create</button>
+        <button id="delete" onclick="del()">Delete</button>
+    </div>
+    <script>
+        async function list() {
+            const response = await fetch('/data-api/rest/Person');
+            const data = await response.json();
+            console.table(data.value);
+        }
+
+        async function get() {
+            const id = 1;
+            const response = await fetch(`/data-api/rest/Person/Id/${id}`);
+            const data = await response.json();
+            console.table(data.value);
+        }
+
+        async function update() {
+            const id = 1;
+            const response = await fetch(`/data-api/rest/Person/Id/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Name: 'Molly' })
+            });
+            const data = await response.json();
+            console.table(data.value);
+        }
+
+        async function create() {
+            const response = await fetch('/data-api/rest/Person', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ Name: 'Pedro' })
+            });
+            const data = await response.json();
+            console.table(data.value);
+        }
+
+        async function del() {
+            const id = 3;
+            const response = await fetch(`/data-api/rest/Person/Id/${id}`, {
+                method: 'DELETE'
+            });
+            console.log(await response.text());
+        }
+    </script>
+</body>
+</html>

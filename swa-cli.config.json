@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "new-folder-(6)": {
+      "appLocation": "scr\\public",
+      "outputLocation": ".",
+      "dataApiLocation": "swa-db-connections",
+      "appDevserverUrl": "http://localhost:4280"
+    }
+  }
+}
