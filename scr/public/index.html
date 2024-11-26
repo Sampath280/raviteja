@@ -9,50 +9,63 @@
     <h1>Static Web Apps Database Connections</h1>
     <blockquote>Open the console in the browser developer tools to see the API responses.</blockquote>
     <div>
-        <button id="list" onclick="list()">List</button>
-        <button id="get" onclick="get()">Get</button>
-        <button id="update" onclick="update()">Update</button>
-        <button id="create" onclick="create()">Create</button>
-        <button id="delete" onclick="del()">Delete</button>
+        <button id="listAuthors" onclick="listAuthors()">List Authors</button>
+        <button id="listComments" onclick="listComments()">List Comments</button>
+        <button id="getAuthor" onclick="getAuthor()">Get Author</button>
+        <button id="createAuthor" onclick="createAuthor()">Create Author</button>
+        <button id="updateAuthor" onclick="updateAuthor()">Update Author</button>
+        <button id="deleteAuthor" onclick="deleteAuthor()">Delete Author</button>
     </div>
     <script>
-        async function list() {
-            const response = await fetch('/data-api/rest/Person');
+        // List all authors
+        async function listAuthors() {
+            const response = await fetch('/api/authors');
             const data = await response.json();
-            console.table(data.value);
+            console.table(data);
         }
 
-        async function get() {
-            const id = 1;
-            const response = await fetch(`/data-api/rest/Person/Id/${id}`);
+        // List all comments
+        async function listComments() {
+            const response = await fetch('/api/comments');
             const data = await response.json();
-            console.table(data.value);
+            console.table(data);
         }
 
-        async function update() {
-            const id = 1;
-            const response = await fetch(`/data-api/rest/Person/Id/${id}`, {
-                method: 'PUT',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ Name: 'Molly' })
-            });
+        // Get a single author by ID
+        async function getAuthor() {
+            const id = 1; // Change as needed
+            const response = await fetch(`/api/authors/${id}`);
             const data = await response.json();
-            console.table(data.value);
+            console.table(data);
         }
 
-        async function create() {
-            const response = await fetch('/data-api/rest/Person', {
+        // Create a new author
+        async function createAuthor() {
+            const response = await fetch('/api/authors', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ Name: 'Pedro' })
+                body: JSON.stringify({ name: 'New Author' })
             });
             const data = await response.json();
-            console.table(data.value);
+            console.table(data);
         }
 
-        async function del() {
-            const id = 3;
-            const response = await fetch(`/data-api/rest/Person/Id/${id}`, {
+        // Update an author
+        async function updateAuthor() {
+            const id = 1; // Change as needed
+            const response = await fetch(`/api/authors/${id}`, {
+                method: 'PUT',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name: 'Updated Author' })
+            });
+            const data = await response.json();
+            console.table(data);
+        }
+
+        // Delete an author
+        async function deleteAuthor() {
+            const id = 1; // Change as needed
+            const response = await fetch(`/api/authors/${id}`, {
                 method: 'DELETE'
             });
             console.log(await response.text());
