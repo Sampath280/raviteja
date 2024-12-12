@@ -4,7 +4,7 @@
     "new-folder-(6)": {
       "appLocation": "scr\\public",
       "outputLocation": ".",
-      "dataApiLocation": "swa-db-connections",
+    
       "appDevserverUrl": "http://localhost:4280"
     }
   }
